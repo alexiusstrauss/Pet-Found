@@ -1,0 +1,19 @@
+name: CI Stage
+
+on:
+  pull_request:
+    branches: [dev, main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and run
+        run: docker-compose up --build -d
+
+      - name: Run Flake8
+        run: docker-compose exec -T backend pipenv run flake8
+
+      - name: Run tests and coverage
+        run: docker-compose exec -T backend pipenv run pytest --cov

@@ -10,4 +10,4 @@ def health():
 
 @app.get("/", tags=["Home"])
 def home():
-    return {"Message": "Welcome to FastAPI"}
+    return {"message": "Welcome to FastAPI"}
