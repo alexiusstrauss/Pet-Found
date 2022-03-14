@@ -1,0 +1,51 @@
+version: "3.3"
+services:
+
+  db:
+    image: postgres:13
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - pet-found-net
+    env_file:
+      - .env
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+
+  pgadmin:
+    image: dpage/pgadmin4
+    env_file:
+      - .env
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - pet-found-net
+    depends_on:
+      - db
+    ports:
+      - "5050:5050"
+
+  backend:
+    image: pet-found-backend
+    depends_on:
+      - db
+    env_file:
+      - .env
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+    command: sh -c "pipenv run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - ./backend/app:/app
+    ports:
+      - "8000:8000"
+    networks:
+      - pet-found-net
+
+networks:
+  pet-found-net:
+
+volumes:
+  app-db-data:
+  pgadmin-data:
+

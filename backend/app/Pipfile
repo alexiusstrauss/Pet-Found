@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+uvicorn = "*"
+requests = "*"
+pydantic = "*"
+jinja2 = "*"
+psycopg2-binary = "*"
+sqlalchemy = "*"
+pytest = "*"
+
+[dev-packages]
+mypy = "*"
+black = "*"
+isort = "*"
+autoflake = "*"
+flake8 = "*"
+pytest-cov = "*"
+ipython = "*"
+
+[requires]
+python_version = "3.9"
