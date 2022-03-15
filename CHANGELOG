@@ -1,0 +1,4 @@
+Adding makefile
+
+- add makefile
+- add contrib and localenv to use as .env local development
