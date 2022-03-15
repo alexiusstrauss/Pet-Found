@@ -15,7 +15,7 @@ clean:
 	@rm -f coverage.xml
 	@rm -f *.log
 
-conf-env:
+config-env:
 	@cp contrib/localenv .env
 
 docker-build:

@@ -1,4 +1,3 @@
-Adding makefile
+Modifing ci configurations
 
-- add makefile
-- add contrib and localenv to use as .env local development
+- organize ci steps

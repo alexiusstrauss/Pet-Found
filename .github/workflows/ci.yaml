@@ -9,8 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and run
-        run: docker-compose up --build -d
+      
+      - name: Create env file
+        run: make config-env
+  
+      - name: Build server
+        run: make docker-build
+
+      - name: Runserver
+        run: make runsever
 
       - name: Run Flake8
         run: docker-compose exec -T backend pipenv run flake8
